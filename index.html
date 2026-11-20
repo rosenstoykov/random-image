@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#081a35">
+<title>Коледно късметче</title>
+<style>
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; min-height: 100svh; display: grid; place-items: center;
+    color: #fff7e8; background: radial-gradient(ellipse at 50% 24%, #173f65, #081a35 60%, #040c1b);
+    font: 1rem system-ui, sans-serif; }
+  main { position: relative; z-index: 1; width: min(100%, 46rem); padding: 1rem .75rem; text-align: center; }
+  h1 { margin: 0 0 .75rem; font: normal clamp(2.2rem, 7vw, 4rem) Georgia, serif; }
+  .stage { display: grid; place-items: center; min-height: 17rem; perspective: 900px; }
+  .stage > * { grid-area: 1 / 1; }
+  .envelope { position: relative; width: min(76vw, 19rem); aspect-ratio: 1.55;
+    border-radius: .35rem; background: #681823; box-shadow: 0 1rem 3rem #0006;
+    animation: envelope 2.6s both; }
+  .paper { position: absolute; z-index: 1; inset: 8% 8% 6%; border-radius: .25rem;
+    background: repeating-linear-gradient(#f6e8c8 0 1.05rem, #ddc69c 1.05rem 1.1rem);
+    animation: letter 2.6s both; }
+  .pocket { position: absolute; z-index: 2; inset: 0; border-radius: inherit;
+    background: linear-gradient(145deg, #a12a3b, #711623);
+    clip-path: polygon(0 0, 50% 56%, 100% 0, 100% 100%, 0 100%); }
+  .flap { position: absolute; z-index: 3; inset: 0 0 auto; height: 64%; transform-origin: top;
+    background: #b83d4c; clip-path: polygon(0 0, 100% 0, 50% 96%);
+    animation: flap 2.6s linear both; }
+  .seal { position: absolute; z-index: 4; left: 50%; top: 56%; translate: -50% -50%;
+    display: grid; place-items: center; width: 2.8rem; height: 2.8rem; border-radius: 50%;
+    background: #d7a650; color: #3f2121; font-size: 1.5rem; animation: seal 1.1s both; }
+  .card { margin: 0; width: min(100%, 48svh, 34rem); aspect-ratio: 1080 / 1870;
+    outline: 1px solid #377ca5;
+    border-radius: .75rem; background: #07162c;
+    box-shadow: 0 1rem 3rem #0005; overflow: hidden; }
+  .card:not([hidden]) { animation: reveal .55s cubic-bezier(.16, 1, .3, 1) both; }
+  .card img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  #status { margin: .8rem 0 0; color: #f7e4bd; }
+  #status:empty { margin: 0; }
+  .snow { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
+  .flake { position: absolute; top: -2rem; left: var(--left); color: #fff;
+    opacity: var(--opacity); font-size: var(--size);
+    animation: snow var(--duration) var(--delay) linear infinite; }
+  @keyframes snow { to { transform: translate(var(--drift), calc(100dvh + 4rem)) rotate(280deg); } }
+  @keyframes envelope { 0% { opacity: 0; transform: translateY(1rem) scale(.9); }
+    13%, 87% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(1rem) scale(.97); } }
+  @keyframes flap {
+    0%, 30% { transform: rotateX(0); z-index: 3; }
+    /* Move the flap behind the letter while its edge faces the viewer. */
+    46% { transform: rotateX(90deg); z-index: 3; }
+    46.01% { transform: rotateX(90deg); z-index: 0; }
+    62%, 100% { transform: rotateX(180deg); z-index: 0; }
+  }
+  @keyframes letter { 0%, 66% { transform: none; } 93%, 100% { transform: translateY(-68%); } }
+  @keyframes seal { 0%, 55% { opacity: 1; } 100% { opacity: 0; transform: scale(.55); } }
+  @keyframes reveal { from { opacity: 0; transform: translateY(1rem) scale(.96); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<div class="snow" aria-hidden="true">
+  <span class="flake" style="--left:2.11%;--size:1.31rem;--opacity:0.50;--duration:10.39s;--delay:-9.06s;--drift:2.73vw">•</span>
+  <span class="flake" style="--left:4.44%;--size:0.78rem;--opacity:0.55;--duration:7.38s;--delay:-3.13s;--drift:1.77vw">❄</span>
+  <span class="flake" style="--left:6.11%;--size:1.30rem;--opacity:0.65;--duration:8.12s;--delay:-6.45s;--drift:2.50vw">•</span>
+  <span class="flake" style="--left:7.23%;--size:0.87rem;--opacity:0.63;--duration:14.42s;--delay:-1.50s;--drift:9.46vw">❄</span>
+  <span class="flake" style="--left:9.31%;--size:1.07rem;--opacity:0.60;--duration:12.72s;--delay:-2.41s;--drift:-6.78vw">•</span>
+  <span class="flake" style="--left:11.52%;--size:1.06rem;--opacity:0.65;--duration:11.15s;--delay:-1.42s;--drift:7.50vw">❄</span>
+  <span class="flake" style="--left:14.03%;--size:1.29rem;--opacity:0.51;--duration:7.36s;--delay:-3.12s;--drift:1.19vw">•</span>
+  <span class="flake" style="--left:17.03%;--size:1.00rem;--opacity:0.63;--duration:10.92s;--delay:-0.63s;--drift:6.33vw">❄</span>
+  <span class="flake" style="--left:18.29%;--size:0.92rem;--opacity:0.79;--duration:9.55s;--delay:-6.00s;--drift:-0.86vw">•</span>
+  <span class="flake" style="--left:20.95%;--size:1.11rem;--opacity:0.57;--duration:11.30s;--delay:-0.73s;--drift:-7.40vw">❄</span>
+  <span class="flake" style="--left:24.28%;--size:1.34rem;--opacity:0.76;--duration:7.83s;--delay:-1.72s;--drift:-7.06vw">•</span>
+  <span class="flake" style="--left:25.85%;--size:0.70rem;--opacity:0.67;--duration:15.55s;--delay:-9.62s;--drift:0.81vw">❄</span>
+  <span class="flake" style="--left:27.96%;--size:1.00rem;--opacity:0.62;--duration:11.07s;--delay:-7.54s;--drift:-1.03vw">•</span>
+  <span class="flake" style="--left:31.79%;--size:0.65rem;--opacity:0.76;--duration:10.19s;--delay:-4.25s;--drift:6.11vw">❄</span>
+  <span class="flake" style="--left:33.10%;--size:1.10rem;--opacity:0.51;--duration:13.37s;--delay:-0.21s;--drift:4.93vw">•</span>
+  <span class="flake" style="--left:34.34%;--size:1.28rem;--opacity:0.68;--duration:9.33s;--delay:-0.30s;--drift:0.39vw">❄</span>
+  <span class="flake" style="--left:38.33%;--size:0.79rem;--opacity:0.85;--duration:8.47s;--delay:-5.19s;--drift:-8.43vw">•</span>
+  <span class="flake" style="--left:40.83%;--size:1.18rem;--opacity:0.47;--duration:10.68s;--delay:-3.93s;--drift:-4.53vw">❄</span>
+  <span class="flake" style="--left:42.26%;--size:1.18rem;--opacity:0.50;--duration:7.84s;--delay:-4.33s;--drift:7.22vw">•</span>
+  <span class="flake" style="--left:43.57%;--size:0.62rem;--opacity:0.84;--duration:15.03s;--delay:-4.91s;--drift:-6.68vw">❄</span>
+  <span class="flake" style="--left:46.05%;--size:1.20rem;--opacity:0.73;--duration:14.19s;--delay:-4.15s;--drift:-0.78vw">•</span>
+  <span class="flake" style="--left:49.56%;--size:0.81rem;--opacity:0.53;--duration:9.60s;--delay:-8.24s;--drift:-4.47vw">❄</span>
+  <span class="flake" style="--left:51.17%;--size:0.55rem;--opacity:0.54;--duration:10.93s;--delay:-8.13s;--drift:9.62vw">•</span>
+  <span class="flake" style="--left:53.36%;--size:0.60rem;--opacity:0.63;--duration:10.08s;--delay:-3.62s;--drift:0.04vw">❄</span>
+  <span class="flake" style="--left:55.26%;--size:1.37rem;--opacity:0.77;--duration:9.69s;--delay:-3.49s;--drift:-8.60vw">•</span>
+  <span class="flake" style="--left:57.04%;--size:0.67rem;--opacity:0.68;--duration:7.47s;--delay:-3.89s;--drift:-7.40vw">❄</span>
+  <span class="flake" style="--left:60.61%;--size:1.19rem;--opacity:0.83;--duration:14.90s;--delay:-4.68s;--drift:8.06vw">•</span>
+  <span class="flake" style="--left:63.43%;--size:0.59rem;--opacity:0.81;--duration:15.79s;--delay:-15.54s;--drift:-7.86vw">❄</span>
+  <span class="flake" style="--left:65.49%;--size:0.58rem;--opacity:0.74;--duration:14.79s;--delay:-11.23s;--drift:4.99vw">•</span>
+  <span class="flake" style="--left:68.11%;--size:0.62rem;--opacity:0.44;--duration:7.52s;--delay:-7.12s;--drift:-0.38vw">❄</span>
+  <span class="flake" style="--left:69.08%;--size:1.11rem;--opacity:0.53;--duration:8.61s;--delay:-7.87s;--drift:3.52vw">•</span>
+  <span class="flake" style="--left:71.29%;--size:0.65rem;--opacity:0.87;--duration:10.48s;--delay:-3.22s;--drift:8.72vw">❄</span>
+  <span class="flake" style="--left:73.95%;--size:0.71rem;--opacity:0.64;--duration:11.86s;--delay:-1.17s;--drift:-1.04vw">•</span>
+  <span class="flake" style="--left:77.10%;--size:0.75rem;--opacity:0.49;--duration:12.52s;--delay:-9.86s;--drift:-7.35vw">❄</span>
+  <span class="flake" style="--left:78.36%;--size:0.93rem;--opacity:0.88;--duration:8.75s;--delay:-0.57s;--drift:7.42vw">•</span>
+  <span class="flake" style="--left:79.86%;--size:0.76rem;--opacity:0.84;--duration:11.16s;--delay:-1.97s;--drift:-1.54vw">❄</span>
+  <span class="flake" style="--left:82.92%;--size:1.18rem;--opacity:0.75;--duration:7.35s;--delay:-2.50s;--drift:-1.48vw">•</span>
+  <span class="flake" style="--left:86.09%;--size:0.95rem;--opacity:0.43;--duration:14.43s;--delay:-13.55s;--drift:-3.11vw">❄</span>
+  <span class="flake" style="--left:86.47%;--size:0.57rem;--opacity:0.45;--duration:11.28s;--delay:-6.14s;--drift:-4.78vw">•</span>
+  <span class="flake" style="--left:88.97%;--size:1.14rem;--opacity:0.41;--duration:14.14s;--delay:-5.08s;--drift:8.83vw">❄</span>
+  <span class="flake" style="--left:91.62%;--size:0.58rem;--opacity:0.82;--duration:9.31s;--delay:-4.59s;--drift:-5.00vw">•</span>
+  <span class="flake" style="--left:93.79%;--size:1.35rem;--opacity:0.60;--duration:12.05s;--delay:-0.81s;--drift:-5.65vw">❄</span>
+  <span class="flake" style="--left:97.19%;--size:0.64rem;--opacity:0.63;--duration:7.48s;--delay:-4.44s;--drift:-8.12vw">•</span>
+  <span class="flake" style="--left:99.15%;--size:1.39rem;--opacity:0.85;--duration:12.77s;--delay:-12.50s;--drift:0.52vw">❄</span>
+</div>
+<main>
+  <h1>Коледно късметче</h1>
+  <div class="stage">
+    <div id="envelope" class="envelope" hidden aria-hidden="true">
+      <div class="paper"></div><div class="pocket"></div><div class="flap"></div><div class="seal">✦</div>
+    </div>
+    <figure id="card" class="card" hidden aria-live="polite">
+      <img id="picture" width="1080" height="1870" alt="">
+    </figure>
+  </div>
+  <p id="status" role="status"></p>
+  <noscript>Отворете файла в браузър с включен JavaScript, за да се разкрие късметчето.</noscript>
+</main>
+<script>
+"use strict";
+
+// Set this to 25 after adding images/02.jpg through images/25.jpg.
+const imageCount = 25;
+const storageKey = "qr-picture-deck-v1:" + imageCount;
+const envelope = document.querySelector("#envelope");
+const card = document.querySelector("#card");
+const picture = document.querySelector("#picture");
+const status = document.querySelector("#status");
+let state = { remaining: [], last: null };
+
+function drawNumber() {
+  if (imageCount === 1) return 1;
+
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey));
+    if (saved && Array.isArray(saved.remaining)) state = saved;
+  } catch {
+    // Some private browsers disallow local storage.
+  }
+
+  if (state.remaining.length === 0) {
+    state.remaining = Array.from({ length: imageCount }, (_, i) => i + 1);
+    for (let i = imageCount - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [state.remaining[i], state.remaining[j]] = [state.remaining[j], state.remaining[i]];
+    }
+    const lastIndex = imageCount - 1;
+    if (state.remaining[lastIndex] === state.last) {
+      [state.remaining[0], state.remaining[lastIndex]] =
+        [state.remaining[lastIndex], state.remaining[0]];
+    }
+  }
+
+  const number = state.remaining.pop();
+  state.last = number;
+  try {
+    localStorage.setItem(storageKey, JSON.stringify(state));
+  } catch {
+    // The next page load can still draw a random fortune.
+  }
+
+  return number;
+}
+
+function loadPicture(number) {
+  return new Promise(resolve => {
+    const timeout = setTimeout(() => finish(false), 12000);
+    function finish(loaded) {
+      clearTimeout(timeout);
+      picture.onload = null;
+      picture.onerror = null;
+      resolve(loaded);
+    }
+    picture.onload = () => finish(true);
+    picture.onerror = () => finish(false);
+    picture.alt = "Коледно късметче " + number;
+    picture.src = "images/" + String(number).padStart(2, "0") + ".jpg";
+  });
+}
+
+async function openFortune() {
+  const number = drawNumber();
+  card.hidden = true;
+  envelope.hidden = false;
+  status.textContent = "Късметчето се отваря…";
+
+  const minimumDelay = new Promise(resolve => setTimeout(resolve, 2600));
+  const [loaded] = await Promise.all([loadPicture(number), minimumDelay]);
+
+  envelope.hidden = true;
+  if (loaded) {
+    card.hidden = false;
+    status.textContent = "";
+  } else {
+    status.textContent = "Късметчето не се зареди. Зареди страницата отново.";
+  }
+}
+
+openFortune();
+</script>
+</body>
+</html>
