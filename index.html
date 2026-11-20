@@ -175,7 +175,7 @@ function loadPicture(number) {
     picture.onload = () => finish(true);
     picture.onerror = () => finish(false);
     picture.alt = "Коледно късметче " + number;
-    picture.src = "images/" + String(number).padStart(2, "0") + ".jpg";
+    picture.src = String(number).padStart(2, "0") + ".jpg";
   });
 }
 
